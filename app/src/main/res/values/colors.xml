@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#5EA7FB</color>
+    <color name="colorPrimaryAlpha40">#665EA7FB</color>
+    <color name="colorPrimaryDark">#3700B3</color>
+    <color name="colorAccent">#919191</color>
+
+    <color name="white">#ffffffff</color>
+    <!-- The color black, equivalent to 0xff000000 -->
+    <color name="black">#ff000000</color>
+    <color name="red">#ffff0000</color>
+    <!-- Fully transparent, equivalent to 0x00000000 -->
+    <color name="transparent">#00000000</color>
+    <color name="shadow_background">#80000000</color>
+    <color name="shadow70_background">#b3000000</color>
+
+    <color name="colorF3F3F3">#f3f3f3</color>
+    <color name="colorB3B3B3">#B3B3B3</color>
+    <color name="colorF8F8F8">#f8f8f8</color>
+    <color name="colorC8C8C8">#C8C8C8</color>
+    <color name="color919191">#919191</color>
+    <color name="color616161">#616161</color>
+    <color name="color999">#999999</color>
+    <color name="color666">#666666</color>
+    <color name="color1A">#1A1A1A</color>
+    <color name="colorfafaff">#fafaff</color>
+    <color name="color313131">#313131</color>
+    <color name="color050505">#050505</color>
+    <color name="color576B95">#576B95</color>
+    <color name="colorEEE">#eee</color>
+    <color name="colorCCC">#ccc</color>
+    <color name="colorDDD">#ddd</color>
+    <color name="colorFFAB00">#FFAB00</color>
+    <color name="colorF1F7FD">#F1F7FD</color>
+    <color name="colorFF3131">#FF3131</color>
+    <color name="color5EA7FB">#5EA7FB</color>
+    <color name="color09BB07">#09BB07</color>
+    <color name="color1481FF">#1481FF</color>
+    <color name="colorEFF6FF">#EFF6FF</color>
+    <color name="colorFAFAFA">#FAFAFA</color>
+    <color name="colorEBFFF2">#EBFFF2</color>
+    <color name="colorFFF0EC">#FFF0EC</color>
+    <color name="colorB5B5B5">#B5B5B5</color>
+    <color name="colorFF5D2B">#FF5D2B</color>
+</resources>
