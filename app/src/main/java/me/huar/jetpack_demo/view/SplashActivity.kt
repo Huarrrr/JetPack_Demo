@@ -32,7 +32,7 @@ class SplashActivity : BaseActivity() {
         override fun onFinish() {
             if (checkUserPermission()) ActivityUtils.startActivity(this@SplashActivity, LoginActivity::class.java)
             else ActivityUtils.startActivity(this@SplashActivity, MainActivity::class.java)
-            com.blankj.utilcode.util.ActivityUtils.finishActivity(this@SplashActivity)
+            ActivityUtils.finishActivity(this@SplashActivity)
         }
     }
 
@@ -51,16 +51,15 @@ class SplashActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        mViewModel!!.login // 测试network模块,请求后端时，更新url
+        mViewModel!!.ad // 测试network模块,请求后端时，更新url
         mCountdownTimer!!.start()
     }
 
     private fun checkUserPermission(): Boolean {
         val token = SPUtils.getInstance().getString(Constant.Key.TOKEN, "")
-        val userConfig = UserConfig()
-        userConfig.token = token
-//        return StringUtils.isTrimEmpty(userConfig.token)
-        return  false
+        val userConfig = UserConfig(token)
+        getSharedViewModel().mUserConfig.value = userConfig
+        return StringUtils.isTrimEmpty(userConfig.token)
     }
 
     inner class ClickProxy {

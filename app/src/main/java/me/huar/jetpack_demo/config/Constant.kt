@@ -14,5 +14,10 @@ class Constant {
 
     object Key {
         const val TOKEN = "token"
+        const val FROM_TYPE = "from_type"
+    }
+
+    object Value{
+        const val SERVICE = "service"
     }
 }

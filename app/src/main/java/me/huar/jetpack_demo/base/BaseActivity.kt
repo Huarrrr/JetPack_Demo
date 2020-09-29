@@ -18,6 +18,7 @@ import com.lxj.xpopup.core.BasePopupView
 import com.lxj.xpopup.enums.PopupAnimation
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
+import me.huar.jetpack_demo.App
 import me.huar.jetpack_demo.BR
 import me.huar.jetpack_demo.R
 import me.huar.jetpack_demo.config.Constant
@@ -31,6 +32,7 @@ import me.huar.jetpack_demo.widget.ToolbarBuilder
  **/
 abstract class BaseActivity : AppCompatActivity() {
     private var mActivityProvider: ViewModelProvider? = null
+    private var mSharedViewModel: SharedViewModel? = null
 
     private var mDisposable: CompositeDisposable? = null
 
@@ -50,9 +52,15 @@ abstract class BaseActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        mSharedViewModel =
+            (applicationContext as App).getAppViewModelProvider(this)[SharedViewModel::class.java]
+
         mToolbarBuilder = ToolbarBuilder.getToolbar(this)
+
         lifecycle.addObserver(NetworkStateManager.instance)
+
         initViewModel()
+
         val dataBindingConfig = getDataBindingConfig()
         val binding: ViewDataBinding =
             DataBindingUtil.setContentView(this, dataBindingConfig!!.getLayout())
@@ -65,7 +73,9 @@ abstract class BaseActivity : AppCompatActivity() {
             binding.setVariable(bindingParams.keyAt(i), bindingParams.valueAt(i))
             i++
         }
+
         initStatusBarStyle()
+
         getArgs(intent.extras)
         mDisposable = CompositeDisposable()
     }
@@ -83,7 +93,7 @@ abstract class BaseActivity : AppCompatActivity() {
         }
     }
 
-    protected open fun <T : ViewModel?> getActivityViewModel(modelClass: Class<T>): T {
+    protected open fun <T : ViewModel> getActivityViewModel(modelClass: Class<T>): T {
         if (mActivityProvider == null) {
             mActivityProvider = ViewModelProvider(this)
         }
@@ -106,6 +116,10 @@ abstract class BaseActivity : AppCompatActivity() {
                 mBasePopupView!!.show()
             }
         }
+    }
+
+    fun getSharedViewModel(): SharedViewModel {
+        return mSharedViewModel!!
     }
 
     open fun hideLoading() {

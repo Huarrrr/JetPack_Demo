@@ -13,7 +13,7 @@ import org.reactivestreams.Publisher
 import retrofit2.HttpException
 
 object ResponseTransformer {
-    fun <T> handleResult(): FlowableTransformer<BaseEntry<T>, Response<*>> {
+    fun <T> handleResult(): FlowableTransformer<BaseEntry<T>, Response<T>> {
         return FlowableTransformer { upstream: Flowable<BaseEntry<T>> ->
             upstream
                 .onErrorResumeNext(ErrorResumeFunction())
@@ -43,12 +43,12 @@ object ResponseTransformer {
      * @param <T>
     </T> */
     private class ResponseFunction<T> :
-        Function<BaseEntry<T>, Publisher<Response<*>>> {
+        Function<BaseEntry<T>, Publisher<Response<T>>> {
         @Throws(Exception::class)
-        override fun apply(tBaseEntry: BaseEntry<T>): Publisher<Response<*>> {
+        override fun apply(tBaseEntry: BaseEntry<T>): Publisher<Response<T>> {
             val code = tBaseEntry.code
-            val message = tBaseEntry.msg
-            return if (code == 1) {
+            val message = tBaseEntry.message
+            return if (code == 200) {
                 val response: Response<Any?> = Response()
                 response.code = code
                 response.message = message
@@ -57,7 +57,7 @@ object ResponseTransformer {
                 } else {
                     response.setResponse(tBaseEntry.data)
                 }
-                Flowable.just(response)
+                Flowable.just(response as Response<T>)
             } else {
                 Flowable.error(
                     ApiException(

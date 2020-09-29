@@ -13,6 +13,7 @@
     <color name="transparent">#00000000</color>
     <color name="shadow_background">#80000000</color>
     <color name="shadow70_background">#b3000000</color>
+    <color name="text_main">#333333</color>
 
     <color name="colorF3F3F3">#f3f3f3</color>
     <color name="colorB3B3B3">#B3B3B3</color>

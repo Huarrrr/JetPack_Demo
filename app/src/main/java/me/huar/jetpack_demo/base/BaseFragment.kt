@@ -18,6 +18,7 @@ import com.lxj.xpopup.core.BasePopupView
 import com.lxj.xpopup.enums.PopupAnimation
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
+import me.huar.jetpack_demo.App
 import me.huar.jetpack_demo.BR
 import me.huar.jetpack_demo.utils.NetState
 import me.huar.jetpack_demo.utils.NetworkStateManager.Companion.instance
@@ -28,6 +29,7 @@ abstract class BaseFragment : Fragment() {
     private var mActivityProvider: ViewModelProvider? = null
     private var mDisposable: CompositeDisposable? = null
     private var mBasePopupView: BasePopupView? = null
+    private var mSharedViewModel: SharedViewModel? = null
     protected var binding: ViewDataBinding? = null
         private set
 
@@ -39,6 +41,11 @@ abstract class BaseFragment : Fragment() {
     protected abstract fun initViewModel()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        mSharedViewModel =
+            (mActivity!!.applicationContext as App).getAppViewModelProvider(mActivity!!).get(
+                SharedViewModel::class.java
+            )
+
         initViewModel()
         instance.mNetworkStateCallback.observe(
             this,

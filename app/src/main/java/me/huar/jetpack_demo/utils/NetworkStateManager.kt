@@ -13,7 +13,7 @@ import androidx.lifecycle.LifecycleOwner
  * @Description: High energy ahead.前方高能
  */
 class NetworkStateManager private constructor() : DefaultLifecycleObserver {
-    val mNetworkStateCallback = UnPeekLiveData<NetState>()
+    val mNetworkStateCallback = UnPeekLiveData1<NetState>()
     private var mNetworkStateReceive: NetworkStateReceive? = null
     override fun onResume(owner: LifecycleOwner) {
         mNetworkStateReceive = NetworkStateReceive()

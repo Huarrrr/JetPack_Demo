@@ -16,31 +16,27 @@ import me.huar.jetpack_demo.data.network.schedulers.SchedulerProvider.Companion.
  * @Date: 2020/9/28
  * @Description: High energy ahead.前方高能
  */
-class SplashActViewModel : ViewModel() {
+class SplashActViewModel : BaseViewModel() {
+
     @JvmField
     var mCountdownSkip = MutableLiveData<String>()
     @JvmField
     var url = ObservableField<String>()
 
     //put param
-    val login: Disposable
+    val ad: Disposable
         get() {
-            val params: MutableMap<String, Any> =
-                MapUtils.newHashMap()
-            //put param
-            params["fdsaf"] = "fds"
+
             return request!!
-                .toLogin(params)
+                .getAd()
                 .compose(ResponseTransformer.handleResult())
                 .compose(instance!!.applySchedulers())
                 .subscribe(
                     { data ->
-                        url.set(
-                            "http://119.29.104.217:8087/image/24115f36-08f3-44e6-9cad-c61941324468.jpg"
-                        )
+                        url.set(data!!.response)
                     }
                 ) { throwable: Throwable? ->
-                    url.set("http://119.29.104.217:8087/image/24115f36-08f3-44e6-9cad-c61941324468.jpg")
+                    commonException.postValue(throwable)
                 }
         }
 

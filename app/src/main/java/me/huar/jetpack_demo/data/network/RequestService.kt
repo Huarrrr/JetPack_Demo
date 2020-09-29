@@ -23,7 +23,7 @@ class RequestService {
         private var sRetrofit: Retrofit? = null
 
         private const val sTimeout = 30 * 1000
-        private const val sBaseUrl = "http://172.16.71.142:8086/"
+        private const val sBaseUrl = "http://172.16.71.142:8000/"
 
         init {
             val gson = GsonBuilder()
