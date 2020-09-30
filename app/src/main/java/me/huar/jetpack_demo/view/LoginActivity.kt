@@ -87,7 +87,7 @@ class LoginActivity : BaseActivity() {
             ToastUtils.showShort(it.message)
             val userConfig = getSharedViewModel().mUserConfig.value
             val user: UserInfoEntry = it.response!!
-            userConfig!!.token = user.token
+            userConfig!!.token = user.token!!
             userConfig.avatar_text = user.avatar_text
             userConfig.gender = user.gender
             userConfig.id = user.id

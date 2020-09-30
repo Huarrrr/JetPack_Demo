@@ -20,9 +20,6 @@ interface UserDAO {
     @Query("SELECT * FROM users")
     fun queryAllUser(): Single<MutableList<UserInfoEntry>>
 
-    @Update
-    fun updateUser(vararg userInfoEntry: String):Int
-
     @Query("SELECT * FROM users WHERE id = :id")
     fun queryUserById(id: Int): Single<UserInfoEntry>
 }

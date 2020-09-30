@@ -22,6 +22,5 @@ class UserInfoEntry : BaseEntry<Any>() {
     var birthday: String? = null
     var avatar_text: String? = null
     var token: String? = null
-    var createtime:Date? = null
 
 }
